@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Translator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        input[type="text"], select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            border: none;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f8f9fa;
+        }
+        .error {
+            color: red;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Simple Translator</h1>
+    <form action="/" method="post">
+        <label for="sourceLang">Source Language:</label>
+        <select id="sourceLang" name="sourceLang">
+            <option value="en">English</option>
+            <option value="ru">Russian</option>
+            <!-- Add more languages as needed -->
+        </select>
+
+        <label for="targetLang">Target Language:</label>
+        <select id="targetLang" name="targetLang">
+            <option value="ru">Russian</option>
+            <option value="en">English</option>
+            <!-- Add more languages as needed -->
+        </select>
+
+        <label for="text">Text to Translate:</label>
+        <input type="text" id="text" name="text" placeholder="Enter text to translate" required>
+
+        <button type="submit">Translate</button>
+    </form>
+
+    <div class="result">
+        <p><strong>Translated Text:</strong></p>
+        <p th:text="${translatedText}"></p>
+    </div>
+
+    <div class="error" th:if="${error != null}">
+        <p th:text="${error}"></p>
+    </div>
+</div>
+</body>
+</html>
