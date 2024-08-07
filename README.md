@@ -1,5 +1,5 @@
 # Translater
-Project for java courses 
+Project for java courses - Yes, in the project there is disadvantages, but I I ran into with by this the framework in first once, so what it turned out how it turned out (phrase translated with help this the translator)
 >Если возникает проблема с ключом в переводчике - его можно изменить в application.properties. Так как я использую Яндекс переводчик - ключ сгенерирован сервисным аккаунтом. Ключ, выложенный в общий доступ, может быть заблокирован.
 
 
