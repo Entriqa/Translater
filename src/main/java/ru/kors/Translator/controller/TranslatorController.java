@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import ru.kors.Translator.repository.TranslationRequestRepository;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -30,6 +31,7 @@ public class TranslatorController {
 
     private final ExecutorService executorService = Executors.newFixedThreadPool(10);
 
+    private final TranslationRequestRepository repository = new TranslationRequestRepository();
     @GetMapping("/")
     public String index() {
         return "index";
@@ -98,7 +100,14 @@ public class TranslatorController {
                 translatedText.append(future.get()).append(" ");
             }
 
-            model.addAttribute("translatedText", translatedText.toString().trim());
+            String translatedTextResult = translatedText.toString().trim();
+            model.addAttribute("translatedText", translatedTextResult);
+
+
+            String ipAddress = "unknown";
+
+
+            repository.saveTranslationRequest(ipAddress, text, translatedTextResult);
 
         } catch (InterruptedException | ExecutionException e) {
             model.addAttribute("error", "Error occurred while processing the translation");
